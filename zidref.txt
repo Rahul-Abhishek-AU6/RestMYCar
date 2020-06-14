@@ -1,0 +1,135 @@
+----------------vehicle type--------------------
+{
+    "_id": "5ee65234ffa12b0f5c77b58d",
+    "vehicle": "HatchBack",
+    "__v": 0
+}
+{
+    "_id": "5ee6577cffa12b0f5c77b591",
+    "vehicle": "SUV",
+    "__v": 0
+}
+{
+    "_id": "5ee6584bffa12b0f5c77b596",
+    "vehicle": "MUV MPV",
+    "__v": 0
+}
+{
+    "_id": "5ee65888ffa12b0f5c77b598",
+    "vehicle": "MiniBus",
+    "__v": 0
+}
+{
+    "_id": "5ee6586affa12b0f5c77b597",
+    "vehicle": "Motocycle",
+    "__v": 0
+}
+{
+    "_id": "5ee6578affa12b0f5c77b592",
+    "vehicle": "CrossOver",
+    "__v": 0
+}
+{
+    "_id": "5ee65796ffa12b0f5c77b593",
+    "vehicle": "Sedan",
+    "__v": 0
+}
+{
+    "_id": "5ee657a4ffa12b0f5c77b594",
+    "vehicle": "Shuttle",
+    "__v": 0
+}
+{
+    "_id": "5ee657b6ffa12b0f5c77b595",
+    "vehicle": "Coupe",
+    "__v": 0
+}
+
+----------------makers-------------------
+{
+    "_id": "5ee4adaea0a9d8133c3d6f15",
+    "name": "Tata",
+    "__v": 0
+}
+{
+    "_id": "5ee4add0a0a9d8133c3d6f16",
+    "name": "Jaguar",
+    "__v": 0
+}
+{
+    "_id": "5ee4ade1a0a9d8133c3d6f17",
+    "name": "Toyota",
+    "__v": 0
+}
+{
+    "_id": "5ee4ae0ea0a9d8133c3d6f1a",
+    "name": "Maruti Suzuki",
+    "__v": 0
+}
+{
+    "_id": "5ee4ae29a0a9d8133c3d6f1b",
+    "name": "Mahindra",
+    "__v": 0
+}
+{
+    "_id": "5ee4ae39a0a9d8133c3d6f1c",
+    "name": "Honda",
+    "__v": 0
+}
+{
+    "_id": "5ee4ae45a0a9d8133c3d6f1d",
+    "name": "Hyundai",
+    "__v": 0
+}
+
+----------------models-------------------
+-------------------car details-----------------------
+{
+    "inStock": 4,
+    "_id": "5ee6525fffa12b0f5c77b58e",
+    "name": "Alto 800",
+    "make": {
+        "_id": "5ee4ae0ea0a9d8133c3d6f1a",
+        "name": "Maruti Suzuki"
+    },
+    "vehicle": {
+        "_id": "5ee65234ffa12b0f5c77b58d",
+        "vehicle": "HatchBack"
+    },
+    "model": 2016,
+    "fuelType": "Petrol",
+    "Capacity": 5,
+    "dailyRentalRate": 1200,
+    "__v": 0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "inStock": 4,
+    "_id": "5ee6525fffa12b0f5c77b58e",
+    "name": "Alto 800",
+    "make": {
+        "_id": "5ee4ae0ea0a9d8133c3d6f1a",
+        "name": "Maruti Suzuki"
+    },
+    "vehicle": {
+        "_id": "5ee65234ffa12b0f5c77b58d",
+        "vehicle": "HatchBack"
+    },
+    "model": 2016,
+    "fuelType": "Petrol",
+    "Capacity": 5,
+    "dailyRentalRate": 1200,
+    "__v": 0
+}
