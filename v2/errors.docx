@@ -1,0 +1,22 @@
+1.  throw new mongoose.Error.MissingSchemaError(name);
+      ^
+    MissingSchemaError: Schema hasn't been registered for model "Carmodel".
+    Use mongoose.model(name, schema)
+    Solution:- don't use quotes '' for Schema.const Carmodel = mongoose.model('Carmodel', carmodelSchema);
+
+2.  UnhandledPromiseRejectionWarning: ReferenceError: validate is not defined
+    Solution:- validate was not required use const {Carmodel, validate} = require('../models/carmodel)
+
+3. SyntaxError: Invalid shorthand property initializer
+    Solution:- use : instead of = as let vehicletype= new Vehicletype({ vehicleType : req.body.vehicleType})
+
+4. UnhandledPromiseRejectionWarning: ValidationError: VehicleType validation failed: name: Path `name` is required.
+    Solution:- error could be at Validation part or schema part or at post side
+
+5.  ValidationError: Carmodel validation failed: vehicleType.VehicleType: Path `VehicleType` is required., vehicleType: Validation failed: VehicleType: Path `VehicleType` is required.
+    Solution:- These types of error occurs due to schema errors, validation erros. alert here
+
+6.  UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'photos' of undefined
+    Solution:- Error could be at route and post method
+
+
