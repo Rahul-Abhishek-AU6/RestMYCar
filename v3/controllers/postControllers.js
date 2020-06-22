@@ -1,5 +1,5 @@
 const Carmodel = require('../models/carmodel')
-const Owner = require('../models/owner')
+const {Owner} = require('../models/owner')
 const Customer = require('../models/customer');
 const Admin = require('../models/admin')
 
@@ -10,7 +10,6 @@ const { sendMailToUser, forgotPasswordMailing } = require('../utils/nodemailer')
 
 
 //function to increase vehicle on rent post
-
 function vehicleOnRent(totalPosted){
     return totalPosted += 1
 }
@@ -28,7 +27,8 @@ module.exports = {
 // _______________User Registration______________________________________
     async userRegister(req, res){
         try{
-            //Validating schema from body
+            console.log(1)
+            //------------Validating schema from body--------------
             const {name, email, password, contact,adhaarNumber,  drivingLicense, age} = req.body
             const SchemaValidation= Joi.object({
                 name:Joi.string().min(2).max(50).required(),
@@ -39,41 +39,54 @@ module.exports = {
                 drivingLicense:Joi.string().min(2).max(50).required(),
                 age:Joi.number().min(18).max(50).required()
             })
-                    //Result part
+            console.log(2)
+            //--------------Result part-------------------------------
             const {error, result} = SchemaValidation.validate({name:name, email:email, 
-                        password:password, contact: contact, adhaarNumber: adhaarNumber,
-                        drivingLicense: drivingLicense, age:age});
-            if (error) return res.status(422).send({Error:error.message}) //in case of error in schema
+                password:password, contact: contact, adhaarNumber: adhaarNumber,
+                drivingLicense: drivingLicense, age:age});
+                if (error) return res.status(422).send({Error:error.message}) //in case of error in schema
+                
+                console.log(3)
+                //------------------------------Searching user type------------------------------
+                if(req.body.role =="Owner") {var schema= Owner; var userType = "Owner"}
+                if(req.body.role =="Customer") {var schema= Customer; var userType = "Customer"}
+                
+                console.log(4)
+                console.log(req.body.email)
+                //console.log(4.1,schema)
+                //-------------Checking email--------------
+                const emailCheck = await schema.findOne({ email:req.body.email })
+                console.log(emailCheck)
+                if(emailCheck) return res.send( { error: "Duplicate Email"});
+                console.log(5)
+                console.log(emailCheck)
 
-            //Searching user type
-            if(req.body.role =="Owner") {var schema= Owner; var userType = "Owner"}
-            if(req.body.role =="Customer") {var schema= Customer; var userType = "Customer"}
-        
-            //-------------Checking email--------------
-            const emailCheck = await schema.findone({ email:req.body.email })
-            console.log(emailCheck)
-            if(emailCheck) return res.send( { error: "Duplicate Email"});
-        
                 //-------------Checking adhaar--------------
-            const adhaarNumberCheck = await schema.findone({ adhaarNumber:req.body.adhaarNumber })
-            console.log(adhaarNumberCheck)
-            if(adhaarNumberCheck) return res.send( { error: "Duplicate Aadhaar Number"});
-        
-
-            //---------------------Authentication-------------------------------------
-                const activationToken = await jwt.sign({id:Math.random() }, process.env.TEMP_TOKEN_SECRET, {expiresIn : 1000 * 1000 * 6 })
-                const user = await scchema({ ...req.body });
-
-            //---------------------Hashing password--------------------------------------
-                const hasjedPassword = await hash(req.body.password, 10);
+                const adhaarNumberCheck = await schema.findOne({ adhaarNumber:req.body.adhaarNumber })
+                console.log(adhaarNumberCheck)
+                if(adhaarNumberCheck) return res.send( { error: "Duplicate Aadhaar Number"});
+                
+                console.log(6)
+                console.log(6.1 , adhaarNumber , "Adhaar number is here")
+                
+                //---------------------Authentication-------------------------------------
+                const activationToken = await jwt.sign({id:Math.random() }, process.env.SECRET, {expiresIn : 1000 * 1000 * 6 })
+                const user = await schema({ ...req.body });
+                console.log(user);
+                console.log(6.1, activationToken);
+                
+                //---------------------Hashing password--------------------------------------
+                const hashedPassword = await hash(req.body.password, 10);
                 user.password = hashedPassword;
                 user.activationToken = activationToken;
+                console.log(8)
                 user.save()
-                sendMailToUser(`${userType}`, req.body.mail, activateToken );
-                res.status(202).send({message: `${userType} account registered successfully. Please visit your Email and activate the account by verig=fying the link sent to your EMail `})
+                console.log(9,'Saving user')
+                sendMailToUser(`${userType}`, req.body.mail, activationToken );
+                console.log(10, `$userType`, 'this is user type')
+                res.status(202).send({message: `${userType} account registered successfully. Please visit your Email and activate the account by verifying the link sent to your EMail `})
 
-        } catch{
-                if(err.name === "SequelizeValidationError")
+        } catch(err){
                 return res.status(400).send(`error: ${err.message}`);
         }
     }    

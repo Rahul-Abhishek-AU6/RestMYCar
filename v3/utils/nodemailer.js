@@ -4,7 +4,7 @@ const smtpTransport = require('nodemailer-smtp-transport');
 const transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    //secure: true,
+    secure: true,
     auth: {
         type: 'OAuth2',
         user: process.env.GMAIL,
@@ -26,10 +26,48 @@ function sendMailToUser(user, email, activationToken){
     }).catch((err)=> console.log(err.message))
 }
 
-// isAccepterMailToOwner
+// isAcceptedMailToOwner
+function isAcceptedMailToOwner( emailOwner, name, postedOn, customerName){
+    transport.sendMail({
+        from:process.env.GMAIL,
+        to: emailOwner,
+        subject:`Congratulations your vehicle is going on rent`,
+        html: `Your got your vehicle - ${name} posted on ${postedOn} has got new customer ${Customer} Please visit your profile to view the additonal details of the Customer.
+        Stay-Connected & Get-helped`,
+
+    }) .then((response) => {
+        console.log(response);
+    }) .catch((err) => console.log(err.message))
+}
+
+
 
 // isAccepterMailToCustomer
+function isAcceptedMailToCustomer( emailCustomer, name, postedOn, OwnerName){
+    transport.sendMail({
+        from:process.env.GMAIL,
+        to: emailCustomer,
+        subject:`Congratulations you got your vehicle`,
+        html: `You got your vehicle - ${name} posted on ${postedOn} by ${owner}.  We believe you will enjoy your ride. Please visit your profile to view the additonal details of the Vehicle.
+        Stay-Connected & Get-helped`
+
+    }) .then((response) => {
+        console.log(response);
+    }) .catch((err) => console.log(err.message))
+}
 
 // Forgotpassword
+function forgotPasswordMailing(email, password){
+    transport: sendMail({
+        from: process.env.GMAIL,
+        to: email,
+        subject:`System generated password to login into RentMeCar.com `,
+        html: `<p> This password is system generated to login into your account on <b>RentMeCar.com</b>. Please Login with this password and change your password in profile section if needed.</p>
+        <h3>Password: ${password}`
+    }).then((response) => {
+        console.log(response);
+    }).catch((err) => console.log(err.message))
+}
 
-module.exports = {sendMailToUser};
+
+module.exports = {sendMailToUser,isAcceptedMailToOwner, isAcceptedMailToCustomer, forgotPasswordMailing};

@@ -1,3 +1,14 @@
+{
+    "name": "Vinay",
+    "email": "vinay.shermauryan@gmail.com",
+    "password": "vinay123",
+    "adhaarNumber": "123456789012",
+    "drivingLicense": "PB1012344",
+    "age": 18,
+    "contact": 1234567890,
+    "role": "Owner"
+}
+
 ----------------vehicle type--------------------
 {
     "_id": "5ee65234ffa12b0f5c77b58d",

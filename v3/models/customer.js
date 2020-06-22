@@ -43,31 +43,31 @@ const customerSchema = new mongoose.Schema({
       },
       gender:{
         type:String,
-        required: true
+        required: false
       },
       address:{
         type:String,
-        required:true
+        required:false
       },
       city:{
         type:String,
-        required:true
+        required:false
       },
       state:{
         type:String,
-        required:true
+        required:false
       },
       zipcode:{
         type:Number,
-        required:true
+        required:false
       },
       role:{
         type:String,
-        required: true
+        required: false
       },
       totalPosted:{
           type:String,
-          required: true
+          required: false
         },
         jwt:{
           type:String,
@@ -95,34 +95,34 @@ const customerSchema = new mongoose.Schema({
 const Customer = mongoose.model('Customer', customerSchema);
 
 //validation
-function validateCustomer(customer){
-    const schema={
-        name:Joi.string().min(2).max(255).required(),
-        email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required().unique(),
-        password:Joi.string().min(6).max(255).required(),
-        contact:Joi.number().min(0000000001).max(9999999999).unique().required(),
-        adhaarNumber:Joi.number().min(000000000001).max(999999999999).unique().required(),
-        drivingLicense: Joi.string().min(6).max(255).unique().required(),
-        age:Joi.number().min(18).max(55).required(),
-        gender:Joi.string().required(),
-        address:Joi.string().required(),
-        city:Joi.string().required(),
-        state:Joi.string().required(),
-        zipcode:Joi.number().required(),
-        role:Joi.string().required(),
-        totalPosted:Joi.number().min(0).max(255).required(),
-        jwt:Joi.string(),
-        activationToken:Joi.string(),
-        profilePicture:Joi.string(),
-        isVerified:Joi.boolean(),
-        isBlocked:Joi.boolean()
+// function validateCustomer(customer){
+//     const schema={
+//         name:Joi.string().min(2).max(255).required(),
+//         email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required().unique(),
+//         password:Joi.string().min(6).max(255).required(),
+//         contact:Joi.number().min(0000000001).max(9999999999).unique().required(),
+//         adhaarNumber:Joi.number().min(000000000001).max(999999999999).unique().required(),
+//         drivingLicense: Joi.string().min(6).max(255).unique().required(),
+//         age:Joi.number().min(18).max(55).required(),
+//         gender:Joi.string().required(),
+//         address:Joi.string().required(),
+//         city:Joi.string().required(),
+//         state:Joi.string().required(),
+//         zipcode:Joi.number().required(),
+//         role:Joi.string().required(),
+//         totalPosted:Joi.number().min(0).max(255).required(),
+//         jwt:Joi.string(),
+//         activationToken:Joi.string(),
+//         profilePicture:Joi.string(),
+//         isVerified:Joi.boolean(),
+//         isBlocked:Joi.boolean()
     
-    }
-    return Joi.validate(customer, schema);
-};
+//     }
+//     return Joi.validate(customer, schema);
+// };
 
 
 exports.customerSchema = customerSchema;
 exports.Customer = Customer;
-exports.validate= validateCustomer;
-exports.validatecustomer= validateCustomer;
+// exports.validate= validateCustomer;
+// exports.validatecustomer= validateCustomer;
