@@ -1,0 +1,40 @@
+################# Owner route ###########################
+
+#### Registering Owner of  Vehicle ######
+ 
+ post https://localhost:8080/api/user/login
+ Content-Type: application/json
+
+{
+    "name": "vinay Maurya",
+    "email": "vinay.shermauryan@gmail.com",
+    "password": "vinay1234",
+    "contact": 1434568899,
+    "adhaarNumber": 413466789012,
+    "drivingLicense": "PB1112344",
+    "age": 27,
+    "role": "Owner"
+}
+
+----------------------------------------------------------
+### login owner of vehicle ###
+post https://localhost:8080/api/user/login
+ Content-Type: application/json
+{    
+    "email": "vinay.shermauryan@gmail.com",
+    "password": "vinay123",
+    "role": "Owner"
+}
+
+----------------------------------------------------------
+###  Posting vehicle on rent ###
+
+
+
+
+
+
+
+
+
+
