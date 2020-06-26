@@ -7,12 +7,13 @@ const path = require('path');
 const fs = require('fs');
 const morgan = require('morgan');
 const helmet= require('helmet')
+const {authenticateAdminToken} = require('./middlewares/authenticate');
 
 
 
-// const makers = require('./routes/makers')
+ const makers = require('./routes/makers')
 // const carModel = require('./routes/carmodels')
-// const vehicleType = require('./routes/vehicleTypes')
+ const vehicleType = require('./routes/vehicleTypes')
 // const admin = require('./routes/admins')
 
 
@@ -42,7 +43,7 @@ app.get('/', (req, res)=> res.send({message:"Hola amigos!!!! this is API based w
 app.use(require("./routes/postRoutes"));
 app.use(require("./routes/getRoutes"));
 app.use(require("./routes/deleteRoutes"))
-app.use(require('/routes/updateRoutes'))
+app.use(require('./routes/updateRoutes'))
 
 
 // ----------Server setup -------------------
